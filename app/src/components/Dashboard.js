@@ -41,8 +41,26 @@ export default class Dashboard extends Component {
 
     if (
       (play.name === "Ball" && play.status === 3) ||
-      (play.name === "Strike" && play.status === 2) ||
-      (play.name === "Hit" && play.status > 0)
+      (play.name === "Strike" && play.status === 2)
+      //   (play.name === "Hit" && play.status === 0)
+    ) {
+      this.setState({
+        plays: [
+          ...this.state.plays,
+          (this.state.plays.find(p => p.name === "Ball").status = 0),
+          (this.state.plays.find(p => p.name === "Strike").status = 0),
+          (this.state.plays.find(p => p.name === "Foul").status = 0)
+          //   this.state.plays.find(p => p.name === "Hit").status++
+        ]
+      });
+      return;
+    }
+
+    if (
+      // (play.name === "Ball" && play.status === 3) ||
+      // (play.name === "Strike" && play.status === 2)
+      play.name === "Hit" &&
+      play.status >= 0
     ) {
       this.setState({
         plays: [
