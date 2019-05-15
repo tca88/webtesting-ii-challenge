@@ -8,13 +8,12 @@ export default class Dashboard extends Component {
       { id: 2, name: "Ball", status: 0 },
       { id: 3, name: "Foul", status: 0 },
       { id: 4, name: "Hit", status: 0 }
-    ],
-    status: 0,
-    shouldReset: false
+    ]
   };
   render() {
     return (
       <div>
+        <div data-testid="greeting">{this.state.greeting}</div>
         <div>
           <button id="Strike" onClick={this.clickSubmit}>
             Strike
@@ -28,11 +27,8 @@ export default class Dashboard extends Component {
           <button id="Foul" onClick={this.clickSubmit}>
             Foul
           </button>
+          <button onClick={this.testClick}>Test</button>
         </div>
-        {/* {this.state.plays.map(play => {
-          return <Display key={play.id} play={play} />;
-        })} */}
-
         <Display plays={this.state.plays} />
       </div>
     );
@@ -88,5 +84,9 @@ export default class Dashboard extends Component {
         this.state.plays.find(p => p.name === e.target.id).status++
       ]
     });
+  };
+
+  testClick = () => {
+    this.setState({ greeting: "Hello Web 18" });
   };
 }
