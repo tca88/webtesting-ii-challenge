@@ -16,33 +16,34 @@ export default class Dashboard extends Component {
     return (
       <div>
         <div>
-          <button id="Strike" onClick={this.strike}>
+          <button id="Strike" onClick={this.clickSubmit}>
             Strike
           </button>
-          <button id="Ball" onClick={this.strike}>
+          <button id="Ball" onClick={this.clickSubmit}>
             Ball
           </button>
-          <button id="Hit" onClick={this.strike}>
+          <button id="Hit" onClick={this.clickSubmit}>
             Hit
           </button>
-          <button id="Foul" onClick={this.strike}>
+          <button id="Foul" onClick={this.clickSubmit}>
             Foul
           </button>
         </div>
-        {this.state.plays.map(play => {
+        {/* {this.state.plays.map(play => {
           return <Display key={play.id} play={play} />;
-        })}
+        })} */}
+
+        <Display plays={this.state.plays} />
       </div>
     );
   }
 
-  strike = e => {
+  clickSubmit = e => {
     let play = this.state.plays.find(p => p.name === e.target.id);
 
     if (
       (play.name === "Ball" && play.status === 3) ||
       (play.name === "Strike" && play.status === 2)
-      //   (play.name === "Hit" && play.status === 0)
     ) {
       this.setState({
         plays: [
@@ -50,18 +51,12 @@ export default class Dashboard extends Component {
           (this.state.plays.find(p => p.name === "Ball").status = 0),
           (this.state.plays.find(p => p.name === "Strike").status = 0),
           (this.state.plays.find(p => p.name === "Foul").status = 0)
-          //   this.state.plays.find(p => p.name === "Hit").status++
         ]
       });
       return;
     }
 
-    if (
-      // (play.name === "Ball" && play.status === 3) ||
-      // (play.name === "Strike" && play.status === 2)
-      play.name === "Hit" &&
-      play.status >= 0
-    ) {
+    if (play.name === "Hit" && play.status >= 0) {
       this.setState({
         plays: [
           ...this.state.plays,
