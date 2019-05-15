@@ -15,7 +15,7 @@ export default class Dashboard extends Component {
       <div>
         <div data-testid="greeting">{this.state.greeting}</div>
         <div>
-          <button data-testid="Strike" onClick={this.clickSubmit}>
+          <button data-testid="Strike" id="Strike" onClick={this.clickSubmit}>
             Strike
           </button>
           <button id="Ball" onClick={this.clickSubmit}>
